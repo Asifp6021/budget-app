@@ -73,4 +73,6 @@ updataUi() <- this function gonna be big fucntion it is responsible changing all
 
 clearInput() <- when user types value in input box when clicks on add button or prsses enter. after that i clearing input box.
 
+ 5. ----------*********** created clearInput() function  ********---------
+
 */

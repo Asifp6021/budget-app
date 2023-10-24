@@ -66,6 +66,30 @@ document.addEventListener('keypress', function (e) {
 	budgetIn();
 });
 
+// show function
+function show(element) {
+	element.classList.remove('hide');
+}
+
+// hide function
+function hide(elements) {
+	elements.forEach(function (element) {
+		element.classList.add('hide');
+	});
+}
+
+// active function
+function active(element) {
+	element.classList.add('active');
+}
+
+// inactive function
+function inActive(elements) {
+	elements.forEach(function (element) {
+		element.classList.remove('active');
+	});
+}
+
 // budgetOut function for expense.
 function budgetOut(e) {
 	e.preventDefault();
@@ -108,26 +132,26 @@ function clearInput(inputs) {
 	});
 }
 
-// show function
-function show(element) {
-	element.classList.remove('hide');
+function updateUI() {
+    income = calculateTotal('income', ENTRY_LIST);
+	outcome = calculateTotal('expense', ENTRY_LIST);
+	balance = calculateBalance(income, outcome);
+
+	console.log(balance, income, outcome);
 }
 
-// hide function
-function hide(elements) {
-	elements.forEach(function (element) {
-		element.classList.add('hide');
+function calculateTotal(type, list) {
+	let sum = 0;
+	list.forEach(function (entry) {
+		if (entry.type === type) {
+			sum += entry.amount;
+		}
 	});
+
+	return sum;
 }
 
-// active function
-function active(element) {
-	element.classList.add('active');
-}
-
-// inactive function
-function inActive(elements) {
-	elements.forEach(function (element) {
-		element.classList.remove('active');
-	});
+// calculating balance
+function calculateBalance(income, outcome) {
+    return income - outcome;
 }

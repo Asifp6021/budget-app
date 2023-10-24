@@ -28,3 +28,50 @@ let ENTRY_LIST = [];
 let [balance, income, outcome] = [0, 0, 0];
 let [deleteIcon, editIcon] = ['fas-fa-trash', 'far-fa-edit'];
 
+// showing expense tab and hiding other
+expenseBtn.addEventListener('click', function () {
+	show(expenseEl);
+	hide([incomeEl, allList]);
+	active(expenseBtn);
+	inActive([incomeBtn, allBtn]);
+});
+
+// showing income tab and hiding other
+incomeBtn.addEventListener('click', function () {
+	show(incomeEl);
+	hide([expenseEl, allList]);
+	active(incomeBtn);
+	inActive([expenseBtn, allBtn]);
+});
+
+//showing all tab and hiding expnse and income tab
+allBtn.addEventListener('click', function () {
+	show(allList);
+	hide([incomeEl, expenseEl]);
+	active(allBtn);
+	inActive([incomeBtn, expenseBtn]);
+});
+
+// show function
+function show(element) {
+	element.classList.remove('hide');
+}
+
+// hide function
+function hide(elements) {
+	elements.forEach(function (element) {
+		element.classList.add('hide');
+	});
+}
+
+// active function
+function active(element) {
+	element.classList.add('active');
+}
+
+// inactive function
+function inActive(elements) {
+	elements.forEach(function (element) {
+		element.classList.remove('active');
+	});
+}

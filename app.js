@@ -52,6 +52,37 @@ allBtn.addEventListener('click', function () {
 	inActive([incomeBtn, expenseBtn]);
 });
 
+// addExpense event listener
+addExpense.addEventListener('click', budgetOut);
+
+// addIncome event listener
+addIncome.addEventListener('click', budgetIn);
+
+// addExpense/addIncome enter key event listener
+document.addEventListener('keypress', function (e) {
+	if (e.key !== 'Enter') return;
+
+	budgetOut();
+	budgetIn();
+});
+
+// budgetOut function
+function budgetOut(e) {
+	e.preventDefault();
+
+	if (!expenseTitle.value || !expenseAmount.value) return;
+
+	let expense = {
+		type: 'expense',
+		title: expenseTitle.value,
+		amount: parseInt(expenseAmount.value),
+	};
+
+	ENTRY_LIST.push(expense);
+
+	console.log(expense);
+}
+
 // show function
 function show(element) {
 	element.classList.remove('hide');

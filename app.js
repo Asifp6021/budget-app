@@ -81,7 +81,7 @@ function budgetOut(e) {
 	ENTRY_LIST.push(expense);
 
 	updateUI();
-	clearInput();
+	clearInput([expenseTitle, expenseAmount]);
 }
 
 // budgetIn function for income
@@ -98,7 +98,14 @@ function budgetIn(e) {
 	ENTRY_LIST.push(income);
 
 	updateUI();
-	clearInput();
+	clearInput([incomeTitle, incomeAmount]);
+}
+
+// clearing inputs
+function clearInput(inputs) {
+	inputs.forEach(function (input) {
+		input.value = ' ';
+	});
 }
 
 // show function

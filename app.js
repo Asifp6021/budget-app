@@ -1,6 +1,6 @@
 const balanceEl = document.querySelector('.balance .value');
 const incomeTotalEl = document.querySelector('.income-total');
-const outcomeTotalEl = document.querySelector('.expense-tota');
+const outcomeTotalEl = document.querySelector('.outcome-total');
 const incomeEl = document.querySelector('#income-tracker');
 const expenseEl = document.querySelector('#expense-tracker');
 const allEl = document.querySelector('#all');
@@ -62,8 +62,8 @@ addIncome.addEventListener('click', budgetIn);
 document.addEventListener('keypress', function (e) {
 	if (e.key !== 'Enter') return;
 
-	budgetOut();
-	budgetIn();
+	budgetOut(e);
+	budgetIn(e);
 });
 
 // show function
@@ -133,11 +133,18 @@ function clearInput(inputs) {
 }
 
 function updateUI() {
-    income = calculateTotal('income', ENTRY_LIST);
+	income = calculateTotal('income', ENTRY_LIST);
 	outcome = calculateTotal('expense', ENTRY_LIST);
-	balance = calculateBalance(income, outcome);
+	balance = Math.abs(calculateBalance(income, outcome));
 
-	console.log(balance, income, outcome);
+    let sign = income >= outcome ? '$' : "-$";
+
+    // updating the UI
+    balanceEl.innerHTML = `<p>${sign}</p><p>${balance}</p>`
+    incomeTotalEl.innerHTML = `<p>$</p><p>${income}</p>`
+    outcomeTotalEl.innerHTML = `<p>$</p><p>${outcome}</p>`
+
+    clearElement([expenseList, incomeList, allList])
 }
 
 function calculateTotal(type, list) {
@@ -153,5 +160,5 @@ function calculateTotal(type, list) {
 
 // calculating balance
 function calculateBalance(income, outcome) {
-    return income - outcome;
+	return income - outcome;
 }

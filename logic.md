@@ -75,4 +75,55 @@ clearInput() <- when user types value in input box when clicks on add button or 
 
  5. ----------*********** created clearInput() function  ********---------
 
+ 6. ----------*********** calculating balance, income, outcome  ********---------
+
+ function updateUI() {
+    income = calculateTotal('income', ENTRY_LIST);
+	outcome = calculateTotal('expense', ENTRY_LIST);
+	balance = calculateBalance(income, outcome);
+
+} <- i have setted all these three varible value as 0 as initial state. then now updating it. whithin the updataUi function.
+
+we have provide both variable calculateTotal function which accepting income type and taking entry list as argument.
+
+function calculateTotal(type, list) {
+	let sum = 0;
+	list.forEach(function (entry) {
+		if (entry.type === type) {
+			sum += entry.amount;
+		}
+	});
+
+	return sum;
+} <- and I am doing here calculation calculateTotal accepts two argumanet i have passed on it performs calculation. try to understand the logic.
+
+// calculating balance
+function calculateBalance(income, outcome) {
+    return income - outcome;
+}
+
+
+
+ 7. ----------*********** displaying the icome outcome and balance on the web page  ********---------
+
+
+
+function updateUI() {
+	income = calculateTotal('income', ENTRY_LIST);
+	outcome = calculateTotal('expense', ENTRY_LIST);
+	balance = Math.abs(calculateBalance(income, outcome));
+
+    let sign = income >= outcome ? '$' : "-$";
+
+    // updating the UI
+    balanceEl.innerHTML = `<p>${sign}</p><p>${balance}</p>`
+    incomeTotalEl.innerHTML = `<p>$</p><p>${income}</p>`
+    outcomeTotalEl.innerHTML = `<p>$</p><p>${outcome}</p>`
+} <- upadated ul
+
+Math.abs <- 100 -200 = -100
+
+math abs removes - sign and gives absolute value.
+
+
 */

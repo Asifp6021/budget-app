@@ -66,7 +66,7 @@ document.addEventListener('keypress', function (e) {
 	budgetIn();
 });
 
-// budgetOut function
+// budgetOut function for expense.
 function budgetOut(e) {
 	e.preventDefault();
 
@@ -80,7 +80,25 @@ function budgetOut(e) {
 
 	ENTRY_LIST.push(expense);
 
-	console.log(expense);
+	updateUI();
+	clearInput();
+}
+
+// budgetIn function for income
+function budgetIn(e) {
+	e.preventDefault();
+	if (!incomeTitle.value || !incomeAmount.value) return;
+
+	let income = {
+		type: 'income',
+		title: incomeTitle.value,
+		amount: parseInt(incomeAmount.value),
+	};
+
+	ENTRY_LIST.push(income);
+
+	updateUI();
+	clearInput();
 }
 
 // show function

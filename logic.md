@@ -55,6 +55,8 @@ and same for expnse and tab.
     }
 
     ENTRY_LIST.push(expense);
+     updateUI();
+    clearInput();
 }
 
 we have input button with type of submit that is why i am preveting from getting refresh.
@@ -66,5 +68,9 @@ if added then function will move ahead. and i have created object. because i am 
 and i pushing that object into array that i created before.
 
 and parseInt -> converts string into number. because object taking amount value as string that's why had to convert it to number.
+
+updataUi() <- this function gonna be big fucntion it is responsible changing all the ui after each changes.
+
+clearInput() <- when user types value in input box when clicks on add button or prsses enter. after that i clearing input box.
 
 */

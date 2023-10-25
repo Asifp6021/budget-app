@@ -176,4 +176,21 @@ let ratio = income / (income + outcome);
 local storage can only accept array data in jsontring format. remember it.
 
 our all data is in updateUI function that is why am going to store from there.
+
+12. ----------****\*\*\***** editing and deleting lists items **\*\*\*\***---------
+
+lists.forEach(function(list) {
+	list.addEventListener('click', function(e) {
+		console.log(e.target.localName); <- gives element name
+
+		console.log(e.target.attributes.class.value); <- gives value of class attribute.
+        
+		console.log(e.target.parentNode.parentNode); <- gives parent of element
+
+        delete and edit icon -> parent is div and div's parent is li 
+
+        so that is why two time parentNode so we can delete entire list.
+
+	})
+})
 \*/

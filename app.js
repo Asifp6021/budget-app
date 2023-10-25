@@ -205,3 +205,13 @@ function showEntry(list, type, title, amount, id) {
 	const position = 'afterbegin';
 	list.insertAdjacentHTML(position, entry);
 }
+
+// editing and deleting lists item
+lists.forEach(function (list) {
+	list.addEventListener('click', function (e) {
+		if (e.target.localName !== 'i') return;
+		let targetBtn = e.target.attributes.class.value;
+		let entry = e.target.parentNode.parentNode;
+		let targetId = entry.attributes.id.value;
+	});
+});

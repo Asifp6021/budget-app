@@ -28,7 +28,7 @@ const incomeAmount = document.querySelector('#income-amount-input');
 
 let ENTRY_LIST;
 let [balance, income, outcome] = [0, 0, 0];
-let [deleteIcon, editIcon] = ['fas-fa-trash', 'far-fa-edit'];
+let [deleteIcon, editIcon] = ['fas fa-trash', 'far fa-edit'];
 
 // getting data from local storage and updating value for the ENTRY_LIST
 ENTRY_LIST = JSON.parse(localStorage.getItem('entry-list')) || [];
@@ -213,5 +213,34 @@ lists.forEach(function (list) {
 		let targetBtn = e.target.attributes.class.value;
 		let entry = e.target.parentNode.parentNode;
 		let targetId = entry.attributes.id.value;
+
+		if ((targetBtn === editIcon)) {
+			editEntry(targetId);
+		} else if ((targetBtn === deleteIcon)) {
+			deletEntry(targetId);
+		}
 	});
 });
+
+// deleting lists items
+function deletEntry(targetId) {
+	ENTRY_LIST.splice(targetId, 1);
+	updateUI();
+}
+
+// editing lists item
+function editEntry(targetId) {
+	let targetType = ENTRY_LIST[targetId].type;
+	let targetAmount = ENTRY_LIST[targetId].amount;
+	let targetTitle = ENTRY_LIST[targetId].title;
+
+	if (targetType === 'income') {
+		incomeAmount.value = targetAmount;
+		incomeTitle.value = targetTitle;
+	} else if (targetType === 'expense') {
+		expenseAmount.value = targetAmount;
+		expenseTitle.title = targetTitle;
+	};
+
+	deletEntry(targetId);
+}

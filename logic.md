@@ -155,4 +155,15 @@ in html file we have an element
     using canvas we are going to create chart.
 
 
+function drawCircle(color, ratio, anticlockwise) {
+    context2D.strokeStyle = color;
+    context2D.beginPath();
+    context2D.arc(60, 60, radius, 0, ratio * Math.PI * 2, anticlockwise);
+    context2D.stroke();
+}
+
+created circle chart using canvas now i am going to add this function within update Ui because i want to call this function whenever ui gets updated.
+
+
+
 */

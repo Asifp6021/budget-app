@@ -24,9 +24,15 @@ const incomeTitle = document.querySelector('#income-title-input');
 const incomeAmount = document.querySelector('#income-amount-input');
 
 // Neccesory Variables
-let ENTRY_LIST = [];
+// let ENTRY_LIST = []; <- now value for the entry list going to come from localStorage.
+
+let ENTRY_LIST;
 let [balance, income, outcome] = [0, 0, 0];
 let [deleteIcon, editIcon] = ['fas-fa-trash', 'far-fa-edit'];
+
+// getting data from local storage and updating value for the ENTRY_LIST
+ENTRY_LIST = JSON.parse(localStorage.getItem('entry-list')) || [];
+updateUI();
 
 // showing expense tab and hiding other
 expenseBtn.addEventListener('click', function () {
@@ -158,6 +164,8 @@ function updateUI() {
 	});
 
 	updateChart(income, outcome);
+
+	localStorage.setItem('entry-list', JSON.stringify(ENTRY_LIST));
 }
 
 function calculateTotal(type, list) {

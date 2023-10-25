@@ -125,5 +125,25 @@ Math.abs <- 100 -200 = -100
 
 math abs removes - sign and gives absolute value.
 
+8. ----------*********** created show entry function  ********---------
+
+this function is responsible for the to update income and expense title in the tabs.
+
+9. ----------*********** added show entry function within updateUI  ********---------
+
+i created it and now I am going to call it within UpdateUI function.
+
+ENTRY_LIST.forEach(function (entry, index) {
+		if (entry.type === 'expense') {
+			showEntry(expenseList, entry.type, entry.title, entry.amount, index);
+		} else if (entry.type === 'income') {
+			showEntry(incomeList, entry.type, entry.title, entry.amount, index);
+		}
+		// for all
+		showEntry(allList, entry.type, entry.title, entry.amount, index);
+	});
+
+    // for all
+		showEntry(allList, entry.type, entry.title, entry.amount, index); <- it has no if condition because anyhow we are going to do this at the end.
 
 */

@@ -137,14 +137,25 @@ function updateUI() {
 	outcome = calculateTotal('expense', ENTRY_LIST);
 	balance = Math.abs(calculateBalance(income, outcome));
 
-    let sign = income >= outcome ? '$' : "-$";
+	let sign = income >= outcome ? '$' : '-$';
 
-    // updating the UI
-    balanceEl.innerHTML = `<p>${sign}</p><p>${balance}</p>`
-    incomeTotalEl.innerHTML = `<p>$</p><p>${income}</p>`
-    outcomeTotalEl.innerHTML = `<p>$</p><p>${outcome}</p>`
+	// updating the UI
+	balanceEl.innerHTML = `<p>${sign}</p><p>${balance}</p>`;
+	incomeTotalEl.innerHTML = `<p>$</p><p>${income}</p>`;
+	outcomeTotalEl.innerHTML = `<p>$</p><p>${outcome}</p>`;
 
-    clearElement([expenseList, incomeList, allList])
+	clearElement([expenseList, incomeList, allList]);
+
+	// adding entrytitle in expense and incme and all
+	ENTRY_LIST.forEach(function (entry, index) {
+		if (entry.type === 'expense') {
+			showEntry(expenseList, entry.type, entry.title, entry.amount, index);
+		} else if (entry.type === 'income') {
+			showEntry(incomeList, entry.type, entry.title, entry.amount, index);
+		}
+		// for all
+		showEntry(allList, entry.type, entry.title, entry.amount, index);
+	});
 }
 
 function calculateTotal(type, list) {
@@ -161,4 +172,26 @@ function calculateTotal(type, list) {
 // calculating balance
 function calculateBalance(income, outcome) {
 	return income - outcome;
+}
+
+//clearElement function
+function clearElement(elements) {
+	elements.forEach(function (element) {
+		element.innerHTML = '';
+	});
+}
+
+// adding entry
+function showEntry(list, type, title, amount, id) {
+	const entry = `
+	<li id="${id}" class="${type}">
+	<div class="entry">${title}: $${amount}</div>
+	<div class="action">
+	  <i class="far fa-edit"></i>
+	  <i class="fas fa-trash"></i>
+	</div>
+ </li>`;
+
+	const position = 'afterbegin';
+	list.insertAdjacentHTML(position, entry);
 }

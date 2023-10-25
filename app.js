@@ -25,7 +25,6 @@ const incomeAmount = document.querySelector('#income-amount-input');
 
 // Neccesory Variables
 // let ENTRY_LIST = []; <- now value for the entry list going to come from localStorage.
-
 let ENTRY_LIST;
 let [balance, income, outcome] = [0, 0, 0];
 let [deleteIcon, editIcon] = ['fas fa-trash', 'far fa-edit'];
@@ -138,6 +137,7 @@ function clearInput(inputs) {
 	});
 }
 
+// updating UI after all changes
 function updateUI() {
 	income = calculateTotal('income', ENTRY_LIST);
 	outcome = calculateTotal('expense', ENTRY_LIST);
@@ -168,6 +168,8 @@ function updateUI() {
 	localStorage.setItem('entry-list', JSON.stringify(ENTRY_LIST));
 }
 
+
+// calcultaing sum for income and outcome 
 function calculateTotal(type, list) {
 	let sum = 0;
 	list.forEach(function (entry) {
@@ -214,9 +216,9 @@ lists.forEach(function (list) {
 		let entry = e.target.parentNode.parentNode;
 		let targetId = entry.attributes.id.value;
 
-		if ((targetBtn === editIcon)) {
+		if (targetBtn === editIcon) {
 			editEntry(targetId);
-		} else if ((targetBtn === deleteIcon)) {
+		} else if (targetBtn === deleteIcon) {
 			deletEntry(targetId);
 		}
 	});
@@ -240,7 +242,7 @@ function editEntry(targetId) {
 	} else if (targetType === 'expense') {
 		expenseAmount.value = targetAmount;
 		expenseTitle.title = targetTitle;
-	};
+	}
 
 	deletEntry(targetId);
 }

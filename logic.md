@@ -146,4 +146,13 @@ ENTRY_LIST.forEach(function (entry, index) {
     // for all
 		showEntry(allList, entry.type, entry.title, entry.amount, index); <- it has no if condition because anyhow we are going to do this at the end.
 
+10. ----------*********** all done now creating char using canvas   ********---------
+
+in html file we have an element 
+
+    <div class="chart"></div>
+
+    using canvas we are going to create chart.
+
+
 */
